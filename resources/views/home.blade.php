@@ -6,7 +6,7 @@
 <section class="section-intro">
 
 <div class="intro-banner-wrap">
-	<img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/banners/1.jpg" class="w-100 img-fluid">
+	<img src="https://www.buyrealfakepassport.cc/image/cache/catalog/IMAGES/3-work-890x400.jpg" class="w-100 img-fluid" style="max-height: 300px !important; object-fit: cover">
 </div>
 
 </section>
@@ -21,94 +21,21 @@
 
 
 <div class="row">
-	<div class="col-md-3">
+    @foreach ($popular as $product)
+    <div class="col-md-3">
 		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/1.jpg"> </a>
+			<a href="{{route('product.show', $product->slug)}}" class="img-wrap"> <img src="https://www.buyrealfakepassport.cc/image/cache/catalog/Passports/British%20passport%20cover-270x270.JPG"> </a>
 			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
+				<a href="{{route('product.show', $product->slug)}}" class="title">{{$product->name}}</a>
+                <div class="price">{{ shopper_money_format($product->price_amount)}}</div> <!-- price-wrap.// -->
+                <form action="{{ route('cart.add') }}" method="POST" enctype="multipart/form-data">
+                     <input type="hidden" value="{{ $product->id }}" name="id" class="d-none">
+                    <button type="submit" class="btn btn-primary btn-sm btn-block"> Add to cart </button>
+                </form>
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/2.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/3.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/4.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
+    @endforeach
 </div> <!-- row.// -->
 
 </div> <!-- container .//  -->
@@ -126,94 +53,22 @@
 </header><!-- sect-heading -->
 
 <div class="row">
-	<div class="col-md-3">
+    @foreach ($arrival as $product)
+         <div class="col-md-3">
 		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg"> </a>
+			<a href="{{route('product.show', $product->slug)}}" class="img-wrap"> <img src="https://www.buyrealfakepassport.cc/image/cache/catalog/Passports/British%20passport%20cover-270x270.JPG"> </a>
 			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
+				<a href="{{route('product.show', $product->slug)}}" class="title">{{$product->name}}</a>
+				<div class="price">{{ shopper_money_format($product->price_amount)}}</div> <!-- price-wrap.// -->
+                <form action="{{ route('cart.add') }}" method="POST" enctype="multipart/form-data">
 
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
+                     <input type="hidden" value="{{ $product->id }}" name="id" class="d-none">
+                    <button type="submit" class="btn btn-primary btn-sm btn-block"> Add to cart </button>
+                </form>
 			</figcaption>
 		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/6.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/8.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-
-				<div class="rating-wrap">
-					<ul class="rating-stars">
-						<li style="width:80%" class="stars-active">
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-						<li>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-						</li>
-					</ul>
-					<span class="label-rating text-muted"> 34 reviws</span>
-				</div>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                <a href="#" class="btn btn-primary btn-sm btn-block"> Add to cart </a>
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
+	</div>
+    @endforeach
 </div> <!-- row.// -->
 
 </div> <!-- container .//  -->
@@ -225,46 +80,18 @@
 <section class="section-name bg padding-y-sm">
 <div class="container">
 <header class="section-heading">
-	<h3 class="section-title">Our Brands</h3>
+	<h3 class="section-title">Our Categories</h3>
 </header><!-- sect-heading -->
 
 <div class="row">
-	<div class="col-md-2 col-6">
+    @foreach ($categories as $category)
+        <div class="col-md-2 col-6">
 		<figure class="box item-logo">
 			<a href="#"><img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo1.png"></a>
-			<figcaption class="border-top pt-2">36 Products</figcaption>
+			<figcaption class="border-top pt-2">{{$category->name}}</figcaption>
 		</figure> <!-- item-logo.// -->
 	</div> <!-- col.// -->
-	<div class="col-md-2  col-6">
-		<figure class="box item-logo">
-			<a href="#"><img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo2.png"></a>
-			<figcaption class="border-top pt-2">980 Products</figcaption>
-		</figure> <!-- item-logo.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-2  col-6">
-		<figure class="box item-logo">
-			<a href="#"><img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo3.png"></a>
-			<figcaption class="border-top pt-2">25 Products</figcaption>
-		</figure> <!-- item-logo.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-2  col-6">
-		<figure class="box item-logo">
-			<a href="#"><img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo4.png"></a>
-			<figcaption class="border-top pt-2">72 Products</figcaption>
-		</figure> <!-- item-logo.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-2  col-6">
-		<figure class="box item-logo">
-			<a href="#"><img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo5.png"></a>
-			<figcaption class="border-top pt-2">41 Products</figcaption>
-		</figure> <!-- item-logo.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-2  col-6">
-		<figure class="box item-logo">
-			<a href="#"><img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo2.png"></a>
-			<figcaption class="border-top pt-2">12 Products</figcaption>
-		</figure> <!-- item-logo.// -->
-	</div> <!-- col.// -->
+    @endforeach
 </div> <!-- row.// -->
 </div><!-- container // -->
 </section>

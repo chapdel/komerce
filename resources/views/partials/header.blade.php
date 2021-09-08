@@ -4,21 +4,20 @@
             <div class="row align-items-center">
                 <div class="col-md-3 col-lg-3 col-12">
                     <a href="{{ route('home') }}" class="brand-wrap">
-                        <img
-                            class="logo"
-                            src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logo.png"
-                        />
+                        <img class="logo" src="{{ url('logo.png') }}" />
                     </a>
                     <!-- brand-wrap.// -->
                 </div>
                 <div class="col-md-4 col-lg-5 col-12">
-                    <form action="#" class="search">
+                    <form action="{{ route('search') }}" class="search">
                         <div class="input-group">
                             <input
                                 type="text"
                                 class="form-control"
+                                name="q"
                                 placeholder="Search"
                             />
+
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
                                     <svg
@@ -42,21 +41,84 @@
                 <!-- col.// -->
                 <div class="col-md-5 col-lg-4 col-sm-12 col-12 text-md-right">
                     <div>
-                        @if(Route::has('login'))
-                        <a
-                            href="{{ route('login') }}"
-                            class="btn btn-outline-primary"
-                        >
-                            {{ __("Login") }}</a
-                        >
-                        @endif @if(Route::has('register'))
-                        <a
-                            href="{{ route('register') }}"
-                            class="btn btn-primary"
-                        >
-                            {{ __("Register") }}</a
-                        >
-                        @endif
+                        @auth
+                        <span class="dropdown">
+                            <a
+                                class="dropdown-toggle mr-2"
+                                href="#"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <i class="fa fa-user rounded-circle mr-2"></i>
+                                {{auth()->user()->full_name}}
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                @if(auth()->user()->hasRole('administrator'))
+                                <a
+                                    class="dropdown-item"
+                                    href="{{ route('shopper.dashboard') }}"
+                                    >Admin Dashboard</a
+                                >
+                                @endif
+                                <div class="dropdown-divider"></div>
+                                <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    >Sign Out</a
+                                >
+
+                                <form
+                                    id="logout-form"
+                                    action="{{ route('app.logout') }}"
+                                    method="POST"
+                                    style="display: none"
+                                ></form>
+                            </div>
+                        </span>
+
+                        <!-- <div class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <i class="fa fa-user rounded-circle mr-2"></i>
+                                Profile
+                            </a>
+                        </div> -->
+                        <!-- <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <i class="fa fa-user rounded-circle mr-2"></i>
+                                Profile
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#"
+                                    >Account Settings</a
+                                >
+                                <a class="dropdown-item" href="#">Newsletter</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Sign Out</a>
+                            </div>
+                        </li> -->
+                        @endauth
+
                         <a href="{{ route('cart') }}" class="btn btn-light">
                             Cart
                             <span class="ml-2 badge badge-warning">{{

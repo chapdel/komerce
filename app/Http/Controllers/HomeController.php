@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Meta;
+use Shopper\Framework\Repositories\Ecommerce\CategoryRepository;
+use Shopper\Framework\Repositories\Ecommerce\ProductRepository;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Meta::set('title', 'You are at home');
-        return view('home');
+        return view(
+            'home',
+            [
+                'popular' => (new ProductRepository())
+                    ->makeModel()
+                    ->paginate(),
+                'arrival' => (new ProductRepository())
+                    ->makeModel()
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(),
+                'categories' => (new CategoryRepository())
+                    ->paginate(6),
+            ]
+        );
+    }
+
+    public function showPurchase()
+    {
+        return view('purchase');
     }
 }

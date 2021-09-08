@@ -1,6 +1,5 @@
 @extends('layouts.app')
-
-@section('title', 'Shopping Cart')
+@section('title', 'Purchase')
 @section('content')
     {{-- <section class="section-pagetop bg-dark">
         <div class="container clearfix">
@@ -147,7 +146,7 @@
 	</td>
 	<td>
 		<div class="price-wrap">
-			<var class="price">{{ shopper_money_format($item->price)}}</var>
+			<var class="price">{{ shopper_money_format($item->price_amount) }}</var>
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td class="text-right">
@@ -162,9 +161,7 @@
 </table>
 
 <div class="card-body border-top">
-    <form action="{{route('order.store')}}" method="post">
-        <button type="submit" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </button>
-    </form>
+	<a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
 	<a href="{{route('home')}}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
 </div>
 </div> <!-- card.// -->
